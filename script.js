@@ -147,4 +147,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+    
+    /* ==========================================================================
+       WHATSAPP CONTACT FORM
+       ========================================================================== */
+    const waForm = document.getElementById('waForm');
+    if (waForm) {
+        waForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('waName').value;
+            const subject = document.getElementById('waSubject').value;
+            const message = document.getElementById('waMessage').value;
+            
+            let text = `Hola Ing. Valido, mi nombre es *${name}*.\n`;
+            text += `*Asunto:* ${subject}\n\n`;
+            text += `*Mensaje:* ${message}`;
+            
+            const wsNumber = "5493400665147";
+            const wsUrl = `https://wa.me/${wsNumber}?text=${encodeURIComponent(text)}`;
+            
+            window.open(wsUrl, '_blank');
+        });
+    }
 });
