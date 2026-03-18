@@ -10,13 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.0
+      - name: Clonar repo
+        uses: actions/checkout@v3
+
+      - name: Deploy por SSH
+        uses: appleboy/ssh-action@v0.1.10
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
+          host: 185.245.180.174
+          username: u525403582
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 65002
           script: |
             cd ~/public_html
-            git pull origin main
+            rm -rf *
+            git clone https://github.com/TatoCrocco/valido-agrimensura.git .
